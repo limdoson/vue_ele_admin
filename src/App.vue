@@ -9,6 +9,7 @@
                 <el-input v-model.trim='form_data.text' placeholder="禁止输入空格"></el-input>
             </el-form-item>
         </lds-form>
+        <div id="main" style="width: 600px;height:400px;"></div>
         <el-button v-test='`123`' @click='test' type='primary'>{{msg | test}}</el-button>
     </div>
 </template>
@@ -98,6 +99,12 @@
             }
         },
         created () {
+            window.addEventListener('offline', () =>{
+                console.log('断网啦');
+                
+            })
+        },
+        mounted () {
             
         },
         methods : {

@@ -6,17 +6,23 @@ import directives from '@u/directives'
 // import mixins from '@u/mixins'
 
 //引入需要全局注册的组件，在此注册
+import ElementUi from 'element-ui';
 import ldsForm from '@c/global/LdsForm'
 export default {
     install (Vue,options) {
+        //引入ELEMENTUI
+        Vue.use(ElementUi);
+
         //注册过滤器
         for (let key in filters) {
             Vue.filter(key, filters[key])
         }
+
         //注册指令
         for (let key in directives) {
             Vue.directive(key, directives[key])
         }
+        
         //全局混入，需要时启用
         // Vue.mixin(mixins)
 

@@ -4,20 +4,11 @@ import router from './router'
 import store from './store'
 import 'babel-polyfill'
 Vue.config.productionTip = false
-
-
-import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
-// import '@ast/css/element-theme/index.css'
-Vue.use(ElementUI);
-
-import '@ast/css/reset_ele.less';
+//样式入口文件
+import '@ast/css/app.less';
 
 import plugins from './plugin'
 Vue.use(plugins)
-
-
-
 
 new Vue({
  	router,
