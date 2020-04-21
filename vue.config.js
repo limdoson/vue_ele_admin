@@ -41,9 +41,9 @@ module.exports = {
 			} 
 		} 
 	},
-	// css : {
-	// 	extract : false
-	// },
+	css : {
+		extract : false
+	},
     productionSourceMap: false,
     lintOnSave: false,
     chainWebpack: config => {
@@ -88,16 +88,18 @@ module.exports = {
 			'element-ui': 'ELEMENT',
 			"echarts": "echarts"
 		}
-		// config.plugins = [
-		// 	new CompressionWebpackPlugin({
-        //         filename: '[path].gz[query]',
-        //         algorithm: 'gzip',
-        //         test: new RegExp('\\.(' + productionGzipExtensions.join('|') + ')$'),//匹配文件名
-        //         threshold: 10240,//对10K以上的数据进行压缩
-        //         minRatio: 0.8,
-        //         deleteOriginalAssets:false,//是否删除源文件
-        //     })
-		// ]
+		/* 
+			gzip压缩
+		*/
+		config.plugins.push(
+			new CompressionWebpackPlugin({
+				filename: '[path].gz[query]',
+				algorithm: 'gzip',
+				test: /\.js$|\.html$|\.css/, //匹配文件名
+				threshold: 10240,//对超过10k的数据压缩
+				deleteOriginalAssets: false //不删除源文件
+			})
+		)
 		//生产环境去除console信息
 		if (process.NODE_ENV == 'production') {
 			let optimization = {
