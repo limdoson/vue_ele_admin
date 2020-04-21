@@ -2,7 +2,21 @@
     <span>
         <el-cascader 
             v-model='result'
-            :options='options'>
+            :size='size'
+            :placeholder="placeholder"
+            :multiple='multiple'
+            :disabled='disabled'
+            :filterable='filterable'
+            :clearable="clearable"
+            :options='options'
+            :props='props'
+            :separator='separator'
+            :show-all-levels='showAllLevels'
+            @change='changeHandle'
+            @clear='clearHandle'
+            @blur='blurHandle'
+            @focus="focusHandle"
+            @visible-change='visibleChange'>
         </el-cascader>
     </span>
 </template>
@@ -12,6 +26,7 @@
     export default {
         mixins :[formMixin],
         props :{
+            value : {},
             changeCallBack : {
                 type : Function
             },
@@ -67,12 +82,38 @@
             optionLoadMode :{
                 type : String,
                 default : 'init'
+            },
+            //配置选项
+            defaultProps :{
+                type : Object,
+                default :() => {
+                    return {
+                        value :'id',
+                        label : 'label',
+                        chilren :'children',
+                        checkStrictly : false,//为true时可以选择任意一级选项
+                        multiple : false,//为true时候允许多选
+                    }
+                }
+            },
+            //选项分隔符
+            separator :{
+                type :String,
+                default :' / '
+            },
+            //输入框中是否显示选中值的完整路径
+            showAllLevels : {
+                type : Boolean,
+                default : true
             }
         },
         data() {
             return {
-                result : this.value
+                result : this.value,
             };
         },
+        methods : {
+
+        }
     }
 </script>

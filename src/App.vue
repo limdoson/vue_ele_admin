@@ -3,13 +3,12 @@
         <lds-form
             v-model='form_data'
             label-width='100px'
-            width ='400px'
+            width='400px'
             :options='options'>
             <el-form-item label='文字' prop='text' slot='text'>
                 <el-input v-model.trim='form_data.text' placeholder="禁止输入空格"></el-input>
             </el-form-item>
         </lds-form>
-        <div id="main" style="width: 600px;height:400px;"></div>
         <el-button v-test='`123`' @click='test' type='primary'>{{msg | test}}</el-button>
     </div>
 </template>
@@ -21,7 +20,9 @@
                 msg : '按钮',
                 form_data : {
                     sex :null,
-                    select: null
+                    select: null,
+                    cascader :null,
+                    d :null
                 },
                 options : [
                     {
@@ -43,6 +44,15 @@
                         prop :'text',
                         slot : true,
                         required :true
+                    },{
+                        label : '计数器',
+                        prop : 'count',
+                        type : 'input-number',
+                        min : 1,
+                        max : 3,
+                        changeCallBack : (val) => {
+                            console.log(val)
+                        } 
                     },{
                         label : '性别',
                         prop :'sex',
@@ -91,18 +101,52 @@
                                 label : '大师傅'
                             }
                         ],
-                        focusCallBack : (e,val) => {
-                            console.log('focus',val)
+                        changeCallBack : (val) => {
+                            console.log(val)
+
+                        }
+                    },{
+                        label : '联级选择',
+                        prop :'cascader',
+                        type :'cascader',
+                        optionLoadMode :'visible',
+                        showAllLevels :true,
+                        filterable :true,
+                        optionData : [
+                            {
+                                id : 5,
+                                label : '服务端来的',
+                                children : [
+                                    {
+                                        label : '选项1',
+                                        id :6
+                                    },{
+                                        label : '选项2',
+                                        id :7
+                                    }
+                                ]
+                            }
+                        ]
+                    },{
+                        label : '开关',
+                        prop : 'switch',
+                        type : 'switch',
+                        
+                    },{
+                        label : '日期',
+                        prop : 'd',
+                        type :'date-picker',
+                        pickerType : 'date',
+                        required :true,
+                        changeCallBack :(val) => {
+                            console.log(val)
                         }
                     }
                 ]
             }
         },
         created () {
-            window.addEventListener('offline', () =>{
-                console.log('断网啦');
-                
-            })
+            
         },
         mounted () {
             

@@ -15,6 +15,19 @@
                     :clearable="option.clearable ? option.clearable : false"
                     :type='option.inputType ? option.inputType : `text`'></el-input>
             </template>
+            <!-- inputNumber -->
+            <template v-if='option.type == `input-number`'>
+                <lds-input-number
+                    v-model='result'
+                    :disabled="option.disabled"
+                    :placeholder='option.placeholder'
+                    :min='option.min'
+                    :max='option.max'
+                    :step='option.step'
+                    :changeCallBack='option.changeCallBack || null'
+                    :blurCallBack='option.blurCallBack || null'
+                    :focusCallBack='option.focusCallBack || null'></lds-input-number>
+            </template>
             <!-- radio -->
             <template v-if='option.type == `radio`'>
                 <lds-radio 
@@ -55,7 +68,36 @@
                     :focusCallBack='option.focusCallBack || null'
                     :option-code='option.optionCode'
                     :option-data='option.optionData'
-                    :option-load-mode='option.optionLoadMode'></lds-cascader>
+                    :option-load-mode='option.optionLoadMode'
+                    :default-props='option.defaultProps'
+                    :separator='option.separator'
+                    :show-all-levels='option.showAllLevels'
+                    :filterable='option.filterable'></lds-cascader>
+            </template>
+            <!-- switch -->
+            <template v-if='option.type == `switch`'>
+                <lds-switch 
+                    v-model='result'
+                    :disabled='option.disabled'
+                    :active-color='option.activeColor'
+                    :inactive-color='option.inactiveColor'
+                    :changeCallBack='option.changeCallBack || null'></lds-switch>
+            </template>
+            <!-- date-picker -->
+            <template v-if='option.type == `date-picker`'>
+                <lds-date-picker
+                    v-model='result'
+                    :placeholder='option.placeholder'
+                    :picker-type='option.pickerType'
+                    :format='option.format'
+                    :valueFormat='option.valueFormat'
+                    :disabled='option.disabled'
+                    :clearable='option.clearable'
+                    :picker-options='option.pickerOptions'
+                    :changeCallBack='option.changeCallBack || null'
+                    :clearCallBack='option.clearCallBack || null'
+                    :blurCallBack='option.blurCallBack || null'
+                    :focusCallBack='option.focusCallBack || null'></lds-date-picker>
             </template>
         </el-form-item>
     </span>
@@ -65,11 +107,17 @@
     import ldsRadio from '@c/useingImport/LdsRadio'
     import ldsSelect from '@c/useingImport/LdsSelect'
     import ldsCascader from '@c/useingImport/LdsCascader'
+    import ldsSwitch from '@c/useingImport/LdsSwitch'
+    import ldsDatePicker from '@c/useingImport/LdsDatePicker'
+    import ldsInputNumber from '@c/useingImport/LdsInputNumber'
     export default {
         components : {
             ldsRadio,
             ldsSelect,
-            ldsCascader
+            ldsCascader,
+            ldsSwitch,
+            ldsDatePicker,
+            ldsInputNumber
         },
         props : {
             option : {

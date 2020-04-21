@@ -5,15 +5,15 @@ export default {
     
     data () {
         return {
-            options : null
+            options : null,//选项数据<radio,select,cascader>,
+            props : this.defaultProps,//配置选项 90 <cascader>
         };
     },
     created () {
-
-        // console.log(this.result,this.option)
-        if (!this.optionCode && !this.optionData) {
-            throw new Error('缺乏选项数据');
-        }
+        
+        // if (!this.optionCode && !this.optionData) {
+        //     throw new Error(`选项${this.type}缺乏选项数据，请至少传入默认的optionData或者optionCode`);
+        // }
         this.init()
     },
     methods : {
@@ -34,7 +34,6 @@ export default {
                         }
                     ]
                 }
-                
                 return;
             } else {
                 if (this.optionData) {
@@ -46,18 +45,26 @@ export default {
         请求数据的具体处理业务
         */
         getOptionData () {
-            // get option Data form server
-
+            // get option Data form server by code
             this.options = [
                 {
                     id : 5,
-                    label : '服务端来的'
+                    label : '服务端来的',
+                    children : [
+                        {
+                            label : '选项1',
+                            id :6
+                        },{
+                            label : '选项2',
+                            id :7
+                        }
+                    ]
                 }
             ]
         },
         /*
         修改时触发的函数,
-        支持组件：radio
+        支持组件：radio, select, cascader, switch, date-picker
         */
         changeHandle (val) {
             if (this.changeCallBack) {
@@ -66,7 +73,7 @@ export default {
         },
         /*
         clear 时触发的方法
-        支持 type = select
+        支持 type = select , date-picker
         */ 
         clearHandle (val) {
             if (this.clearCallBack) {
@@ -75,7 +82,7 @@ export default {
         },
         /*
         控件blur 时触发的方法
-        支持 type = select
+        支持 type = select, date-picker
         */ 
         blurHandle (e) {
             if (this.blurCallBack) {
@@ -84,21 +91,28 @@ export default {
         },
         /*
         控件focus  时触发的方法
-        支持 type = select
+        支持 type = select, date-picker
         */ 
         focusHandle (e) {
             if (this.focusCallBack) {
                 this.focusCallBack(e,this.result)
             }
+        },
+        /* 
+        选择框显示时触发函数，节省请求资源
+        支持 type= select, cascader
+        */
+        visibleChange (v) {
+            if (v && this.optionLoadMode == 'visible') {
+                this.getOptionData()
+            }
         }
     },
     watch :{
         value (n) {
-            
             this.result = n;
         },
         result (n) {
-            
             this.$emit('input',n)
         }
     }

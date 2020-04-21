@@ -1,6 +1,6 @@
 <template>
     <el-form
-        class='lds-form'
+        :class='className'
         ref='ldsForm'
         :inline='inline'
         :size='size'
@@ -22,9 +22,6 @@
                 <slot :name='item.prop'></slot>
             </template>
         </template>
-        <el-form-item>
-            <el-button type='primary' @click='submit'>提 交</el-button>
-        </el-form-item>
     </el-form>
 </template>
 
@@ -33,6 +30,11 @@
     export default {
         components : {ldsFormItem},
         props : {
+            //表单元素的类名
+            className : {
+                type :String,
+                default : 'lds-form'
+            },
             //是否行内表单样式
             inline : {
                 type : Boolean,
