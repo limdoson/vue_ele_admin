@@ -141,6 +141,15 @@
                         changeCallBack :(val) => {
                             console.log(val)
                         }
+                    },{
+                        label : '日期时间',
+                        prop :'dt',
+                        type :'date-time-picker',
+                        pickerType :'datetimerange',
+                        required : true,
+                        changeCallBack :(val) => {
+                            console.log(val)
+                        }
                     }
                 ]
             }

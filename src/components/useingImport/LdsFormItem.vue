@@ -99,6 +99,21 @@
                     :blurCallBack='option.blurCallBack || null'
                     :focusCallBack='option.focusCallBack || null'></lds-date-picker>
             </template>
+            <template v-if='option.type == `date-time-picker`'>
+                <lds-date-time-picker
+                    v-model='result'
+                    :placeholder='option.placeholder'
+                    :picker-type='option.pickerType'
+                    :format='option.format'
+                    :valueFormat='option.valueFormat'
+                    :disabled='option.disabled'
+                    :clearable='option.clearable'
+                    :picker-options='option.pickerOptions'
+                    :changeCallBack='option.changeCallBack || null'
+                    :clearCallBack='option.clearCallBack || null'
+                    :blurCallBack='option.blurCallBack || null'
+                    :focusCallBack='option.focusCallBack || null'></lds-date-time-picker>
+            </template>
         </el-form-item>
     </span>
 </template>
@@ -110,6 +125,7 @@
     import ldsSwitch from '@c/useingImport/LdsSwitch'
     import ldsDatePicker from '@c/useingImport/LdsDatePicker'
     import ldsInputNumber from '@c/useingImport/LdsInputNumber'
+    import ldsDateTimePicker from '@c/useingImport/LdsDateTimePicker'
     export default {
         components : {
             ldsRadio,
@@ -117,7 +133,8 @@
             ldsCascader,
             ldsSwitch,
             ldsDatePicker,
-            ldsInputNumber
+            ldsInputNumber,
+            ldsDateTimePicker
         },
         props : {
             option : {
