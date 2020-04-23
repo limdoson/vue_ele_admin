@@ -5,11 +5,11 @@
         :size='size'
         :placeholder='placeholder'
         :format='formatComputed'
+        :value-format='valueFormatComputed'
         range-separator="至"
         start-placeholder="开始时间"
         end-placeholder="结束时间"
         :picker-options="pickerOptions"
-        :value-format='valueFormatComputed'
         :disabled='disabled'
         :clearable='clearable'
         @change='changeHandle'
@@ -25,7 +25,9 @@
         year : 'yyyy',
         month :'yyyy-MM',
         daterange : 'yyyy-MM-dd',
-        monthrange :'yyyy-MM'
+        monthrange :'yyyy-MM',
+        datetime :'yyyy-MM-dd HH:mm:ss',
+        datetimerange : 'yyyy-MM-dd HH:mm:ss',
         //@todo 由于elementui type为week时，使用valueformat会报错，这里要使用moment.js做一下处理
         //考虑到目前使用周时间单位的较少，暂不处理
         // moment.js : http://momentjs.cn/docs/
@@ -38,7 +40,9 @@
         month :'yyyy-MM',
         week : 'yyyy 第 WW 周',
         daterange : 'yyyy-MM-dd',
-        monthrange :'yyyy-MM'
+        monthrange :'yyyy-MM',
+        datetime :'yyyy-MM-dd HH:mm:ss',
+        datetimerange : 'yyyy-MM-dd HH:mm:ss',
     }
 
     export default {
@@ -47,7 +51,7 @@
             value : {},
             pickerType : {
                 type : String,
-                default : 'date'  //<week, month, year, dates, daterange, monthrange>
+                default : 'date'  //<week, month, year, dates, daterange, monthrange, datetime, datetimerange>
             },
             size :{
                 type : String,

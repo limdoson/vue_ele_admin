@@ -99,8 +99,9 @@
                     :blurCallBack='option.blurCallBack || null'
                     :focusCallBack='option.focusCallBack || null'></lds-date-picker>
             </template>
-            <template v-if='option.type == `date-time-picker`'>
-                <lds-date-time-picker
+            <!-- time-picker -->
+            <template v-if='option.type == `time-picker`'>
+                <lds-time-picker
                     v-model='result'
                     :placeholder='option.placeholder'
                     :picker-type='option.pickerType'
@@ -108,11 +109,23 @@
                     :valueFormat='option.valueFormat'
                     :disabled='option.disabled'
                     :clearable='option.clearable'
+                    :is-range='option.isRange'
                     :picker-options='option.pickerOptions'
                     :changeCallBack='option.changeCallBack || null'
                     :clearCallBack='option.clearCallBack || null'
                     :blurCallBack='option.blurCallBack || null'
-                    :focusCallBack='option.focusCallBack || null'></lds-date-time-picker>
+                    :focusCallBack='option.focusCallBack || null'></lds-time-picker>
+            </template>
+            <!-- file-upload -->
+            <template v-if='option.type == `file-upload`'>
+                <lds-upload
+                    v-model='result'
+                    :headers='option.headers'
+                    :name='option.name'
+                    :data='option.data'
+                    :upload-url='option.uploadUrl'
+                    :limit='option.limit'
+                    :accept='option.accept'></lds-upload>
             </template>
         </el-form-item>
     </span>
@@ -125,7 +138,8 @@
     import ldsSwitch from '@c/useingImport/LdsSwitch'
     import ldsDatePicker from '@c/useingImport/LdsDatePicker'
     import ldsInputNumber from '@c/useingImport/LdsInputNumber'
-    import ldsDateTimePicker from '@c/useingImport/LdsDateTimePicker'
+    import ldsTimePicker from '@c/useingImport/LdsTimePicker'
+    import ldsUpload from '@c/useingImport/LdsUpload'
     export default {
         components : {
             ldsRadio,
@@ -134,7 +148,8 @@
             ldsSwitch,
             ldsDatePicker,
             ldsInputNumber,
-            ldsDateTimePicker
+            ldsTimePicker,
+            ldsUpload
         },
         props : {
             option : {

@@ -22,7 +22,9 @@
                     sex :null,
                     select: null,
                     cascader :null,
-                    d :null
+                    d :null,
+                    t :null,
+                    file : null
                 },
                 options : [
                     {
@@ -136,20 +138,23 @@
                         label : '日期',
                         prop : 'd',
                         type :'date-picker',
-                        pickerType : 'date',
+                        pickerType : 'datetime',
                         required :true,
                         changeCallBack :(val) => {
                             console.log(val)
                         }
                     },{
-                        label : '日期时间',
-                        prop :'dt',
-                        type :'date-time-picker',
-                        pickerType :'datetimerange',
-                        required : true,
-                        changeCallBack :(val) => {
+                        label : '时间',
+                        prop : 't',
+                        type : 'time-picker',
+                        isRange :true,
+                        changeCallBack :(val) =>{
                             console.log(val)
-                        }
+                        } 
+                    },{
+                        label : '上传',
+                        prop : 'file',
+                        type : 'file-upload',
                     }
                 ]
             }

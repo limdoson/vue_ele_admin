@@ -7,20 +7,28 @@ let request = axios.create({
 })
 
 //request 拦截
-request.interceptors.request.use( config => {
-    //config处理
-    return config;
-}, error => {
-    Promise.reject(error)
-})
+request.interceptors.request.use( 
+    config => {
+        //config处理
+        return config;
+    }, 
+    error => {
+        //错误处理
+        return Promise.reject(error)
+    }
+)
 
 //response 拦截
-request.interceptors.response.use( response => {
+request.interceptors.response.use( 
+    response => {
     //response处理
 
-    return response;
-}, error => {
-    Promise.reject(error)
-})
+        return response;
+    }, 
+    error => {
+        //错误处理
+        return Promise.reject(error)
+    }
+)
 
 export default request;

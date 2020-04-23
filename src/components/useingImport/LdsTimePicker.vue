@@ -1,42 +1,40 @@
 <template>
-    <el-date-picker
+    <el-time-picker
         v-model="result"
-        :editable='false'
-        :type="pickerType"
+        :type='pickerType'
         :size='size'
+        :placeholder='placeholder'
+        :format='format'
+        :is-range='isRange'
         range-separator="至"
-        :placeholder="placeholder"
         start-placeholder="开始时间"
         end-placeholder="结束时间"
-        :format='format'
-        :value-format='valueFormat'
         :picker-options="pickerOptions"
+        :value-format='valueFormat'
         :disabled='disabled'
         :clearable='clearable'
         @change='changeHandle'
         @blur='blurHandle'
-        @focus="focusHandle">
-    </el-date-picker>
+        @focus="focusHandle"></el-time-picker>
 </template>
 
 <script>
     import formMixin from '@u/mixins/formMixin'
-
     export default {
-        mixins: [formMixin],
+        mixins : [formMixin],
         props :{
-            value :{},
+            value : {},
             pickerType : {
                 type : String,
-                default : 'datetime'  //<datetime, datetimerange>
+                default : 'date'  //<week, month, year, dates, daterange, monthrange, datetime, datetimerange>
             },
             size :{
                 type : String,
                 default : 'small'
             },
-            disabled :{
+            isRange :{
                 type : Boolean,
-                default : false
+                default :false
             },
             placeholder :{
                 type : String,
@@ -45,11 +43,11 @@
             //日期格式
             format : {
                 type : String,
-                default : 'yyyy-MM-dd HH:mm:ss'
+                default : 'HH:mm:ss'
             },
             valueFormat : {
                 type : String,
-                default : 'yyyy-MM-dd HH:mm:ss'
+                default : 'HH:mm:ss'
             },
             disabled :{
                 type : Boolean,
