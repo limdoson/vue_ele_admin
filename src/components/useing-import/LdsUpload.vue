@@ -73,7 +73,7 @@
                 //其他文件大小限制
                 fileLimitSize : process.env.VUE_APP_FILE_SIZE_UPLOAD_LIMIT,
                 //允许上传的文件类型
-                acceptFileType : this.accept || process.env.VUE_APP_FILE_UPLOAD_ACCETP_TYPE,
+                acceptFileType : this.accept || process.env.VUE_APP_FILE_UPLOAD_ACCEPT_TYPE,
                 //最终的提交结果
                 result : this.value
             };

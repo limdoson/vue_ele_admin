@@ -2,7 +2,7 @@ import axios from 'axios'
 
 let request = axios.create({
     timeout : 0,
-    baseURL : process.env.VUE_APP_API_HOST,
+    baseURL : process.env.VUE_APP_BASE_API,
     withCredentials : true
 })
 
@@ -22,7 +22,7 @@ request.interceptors.request.use(
 request.interceptors.response.use( 
     response => {
     //response处理
-
+        
         return response;
     }, 
     error => {

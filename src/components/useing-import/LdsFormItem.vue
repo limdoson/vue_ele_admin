@@ -132,14 +132,14 @@
 </template>
 
 <script>
-    import ldsRadio from '@c/useingImport/LdsRadio'
-    import ldsSelect from '@c/useingImport/LdsSelect'
-    import ldsCascader from '@c/useingImport/LdsCascader'
-    import ldsSwitch from '@c/useingImport/LdsSwitch'
-    import ldsDatePicker from '@c/useingImport/LdsDatePicker'
-    import ldsInputNumber from '@c/useingImport/LdsInputNumber'
-    import ldsTimePicker from '@c/useingImport/LdsTimePicker'
-    import ldsUpload from '@c/useingImport/LdsUpload'
+    import ldsRadio from '@c/useing-import/LdsRadio'
+    import ldsSelect from '@c/useing-import/LdsSelect'
+    import ldsCascader from '@c/useing-import/LdsCascader'
+    import ldsSwitch from '@c/useing-import/LdsSwitch'
+    import ldsDatePicker from '@c/useing-import/LdsDatePicker'
+    import ldsInputNumber from '@c/useing-import/LdsInputNumber'
+    import ldsTimePicker from '@c/useing-import/LdsTimePicker'
+    import ldsUpload from '@c/useing-import/LdsUpload'
     export default {
         components : {
             ldsRadio,

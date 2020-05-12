@@ -7,7 +7,7 @@
         :label-width="labelWidth"
         :label-position="labelPosition"
         :disabled="disabled"
-        :showMessage='showMessage'
+        :show-message='showMessage'
         :model='formData'
         :rules='rules'
         :style='{width : width}'>
@@ -22,11 +22,14 @@
                 <slot :name='item.prop'></slot>
             </template>
         </template>
+        <el-form-item>
+            <el-button type='primary' @click='submit'>提交数据</el-button>
+        </el-form-item>
     </el-form>
 </template>
 
 <script>
-    import ldsFormItem from '@c/useingImport/LdsFormItem'
+    import ldsFormItem from '@c/useing-import/LdsFormItem'
     export default {
         components : {ldsFormItem},
         props : {
@@ -75,6 +78,13 @@
             //表单绑定的值
             value :{
                 type : Object
+            },
+            //提交函数
+            submitHandle : {
+                type :Function
+            },
+            validateErrorHandle : {
+                type :Function
             }
         },
         data() {
@@ -141,10 +151,16 @@
                 return obj;
             },
             submit () {
-                this.$refs.ldsForm.validate( (valid) => {
+                this.$refs.ldsForm.validate( (valid,rules) => {
                     if (valid) {
-
+                        if (this.submitHandle) {
+                            this.submitHandle()
+                        }
                     } else {
+                        //如果有验证错误的方法，进执行该方法
+                        if (this.validateErrorHandle) {
+                            this.validateErrorHandle(rules)
+                        }
                         return false;
                     }
                 })

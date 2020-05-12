@@ -57,7 +57,6 @@ module.exports = {
             .set('@ast', resolve('src/assets'))
             .set('@u',resolve('src/utils'))
             .set('@v',resolve('src/views'))
-            .set('@cfg',resolve('src/config'))
 			.set('@itf',resolve('src/interface'))
 		config.entry.app = ["babel-polyfill", "./src/main.js"]
 		//以cdn的方式引入部分资源，index.html中引入

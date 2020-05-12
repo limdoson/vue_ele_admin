@@ -4,12 +4,14 @@
             v-model='form_data'
             label-width='100px'
             width='400px'
-            :options='options'>
+            :options='options'
+            :submit-handle='formSubmit'
+            :validate-error-handle='errorHandle'>
             <el-form-item label='文字' prop='text' slot='text'>
                 <el-input v-model.trim='form_data.text' placeholder="禁止输入空格"></el-input>
             </el-form-item>
         </lds-form>
-        <el-button v-test='`123`' @click='test' type='primary'>{{msg | test}}</el-button>
+        <el-button v-test='`123`' @click='test' type='primary'>{{msg}}</el-button>
     </div>
 </template>
 
@@ -33,7 +35,6 @@
                         type : 'input',
                         inputType : 'text',
                         clearable : true,
-                        defaultValue : 10,
                         required :true,
                         assignVlds : [
                             {
@@ -89,6 +90,7 @@
                         filterable : true,
                         optionLoadMode :'visible',
                         required :true,
+                        multiple :true,
                         optionData : [
                             {
                                 id :1,
@@ -169,6 +171,12 @@
             test () {
                 console.log(this.form_data)
                 // this.$store.commit('testMut',1)
+            },
+            formSubmit () {
+                console.log(11)
+            },
+            errorHandle (rules) {
+                console.log(rules)
             }
         }
     }
