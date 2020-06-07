@@ -1,8 +1,9 @@
 import axios from 'axios'
+import {Message} from 'element'
 
 let request = axios.create({
     timeout : 0,
-    baseURL : process.env.VUE_APP_BASE_API,
+    baseURL : process.env.VUE_APP_BASE_URL,
     withCredentials : true
 })
 
@@ -21,7 +22,8 @@ request.interceptors.request.use(
 //response 拦截
 request.interceptors.response.use( 
     response => {
-    //response处理
+        //response处理
+        //接口状态妈维护在这里完成
         
         return response;
     }, 
