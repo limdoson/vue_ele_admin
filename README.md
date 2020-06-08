@@ -9,14 +9,27 @@
 ```
 
 ```
+后台返回时间戳，前端如果需要处理，可以使用momentjs来处理，
+如果需求不复杂，也可以直接自己在src/utils/filters/index，中写个过滤器，并注册到全局或在需要时引入，
+目前项目中以momentjs处理[http://momentjs.cn/docs/](http://momentjs.cn/docs/)
+```
+
+```
 src/components目录说明
-- global目录为需要在全局注册的组件
+- global目录为需要在全局注册的组件，全局注册组件/过滤器/自定义指令/全量引入的依赖等这些都在：src/plugin/index.js 中完成
 - usering-import 为按需引入的组件
 ```
 
 ```
 src/interface目录为接口封装目录
 所有接口都建议封装在该文件夹内
+```
+
+```
+src/router
+src/store目录说明
+
+index.js默认为全局性的文件，如果项目体量较大，请将router/store拆分为多个模块，放于modules文件夹中，便于维护
 ```
 
 ```
@@ -28,4 +41,8 @@ VUE_APP_IMG_SIZE_UPLOAD_LIMIT ： 上传图片最大体积限制，单位兆
 VUE_APP_FILE_UPLOAD_NAME ：上传时的name属性，根据后端需求调整
 VUE_APP_FILE_UPLOAD_COUNT_LIMIT ： 允许同时上传的文件数量
 VUE_APP_FILE_UPLOAD_ACCEPT_TYPE ： 允许上传的文件类型
+```
+
+```
+基于elementui表单组件的二次封装，ldsForm，文档：[http://blog.coder-leem.com/documents/form.html](http://blog.coder-leem.com/documents/form.html)
 ```

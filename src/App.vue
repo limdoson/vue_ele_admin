@@ -1,17 +1,6 @@
 <template>
     <div id="app">
-        <lds-form
-            v-model='form_data'
-            label-width='100px'
-            width='400px'
-            :options='options'
-            :submit-handle='formSubmit'
-            :validate-error-handle='errorHandle'>
-            <el-form-item label='文字' prop='text' slot='text'>
-                <el-input v-model.trim='form_data.text' placeholder="禁止输入空格"></el-input>
-            </el-form-item>
-        </lds-form>
-        <el-button v-test='`123`' @click='test' type='primary'>{{msg}}</el-button>
+        <router-view></router-view>
     </div>
 </template>
 
@@ -20,165 +9,91 @@
     export default {
         data() {
             return {
-                msg : '按钮',
-                form_data : {
-                    sex :null,
-                    select: null,
-                    cascader :null,
-                    d :null,
-                    t :null,
-                    file : null
-                },
-                options : [
+                columnData: [
                     {
-                        label : 'label',
-                        prop : 'number',
-                        type : 'input',
-                        inputType : 'text',
-                        clearable : true,
-                        required :true,
-                        assignVlds : [
-                            {
-                                type : 'email',
-                                message :'请输入正确的邮箱地址',
-                                trigger : 'blur'
-                            }
-                        ],
+                        key: 'shopId',
+                        width: '180px',
+                        text: '店铺id',
+                        align: 'center'
                     },{
-                        prop :'text',
-                        slot : true,
-                        required :true
-                    },{
-                        label : '计数器',
-                        prop : 'count',
-                        type : 'input-number',
-                        min : 1,
-                        max : 3,
-                        changeCallBack : (val) => {
-                            console.log(val)
-                        } 
-                    },{
-                        label : '性别',
-                        prop :'sex',
-                        type :'radio',
-                        optionData : [
-                            {
-                                id :1,
-                                label :'选项1',
-                                value :1
-                            },{
-                                id :2,
-                                label :'选项2',
-                                value :2
-                            }, {
-                                id :3,
-                                label :'选项3',
-                                value :3
-                            },{
-                                id :4,
-                                label :'选项4',
-                                value :4
-                            }
-                        ],
-                        required :true,
-                        disabled :false,
-                        
-                    },{
-                        label :'下拉框',
-                        prop :'select',
-                        type : 'select',
-                        placeholder : '选择东西',
-                        filterable : true,
-                        optionLoadMode :'visible',
-                        required :true,
-                        multiple :true,
-                        optionData : [
-                            {
-                                id :1,
-                                label :'苹果',
-                                value :1
-                            },{
-                                id :2,
-                                label :'梨子',
-                                value :2
-                            },{
-                                id :3,
-                                label : '大师傅'
-                            }
-                        ],
-                        changeCallBack : (val) => {
-                            console.log(val)
+                        key: 'platId',
+                        text: '平台',
 
+                        // template=> function: return dom
+                        // 参数介绍
+                        // platId: 当前行数据中与配置项key相同字段的值
+                        // row: 当前行数据
+                        // index: 当前行所在数据中的索引值
+                        template: (platId, row, index) => {
+                            const span = document.createElement('span');
+                            span.style.color = 'blue';
+                            span.innerText = platId;
+                            return span;
                         }
                     },{
-                        label : '联级选择',
-                        prop :'cascader',
-                        type :'cascader',
-                        optionLoadMode :'visible',
-                        showAllLevels :true,
-                        filterable :true,
-                        optionData : [
-                            {
-                                id : 5,
-                                label : '服务端来的',
-                                children : [
-                                    {
-                                        label : '选项1',
-                                        id :6
-                                    },{
-                                        label : '选项2',
-                                        id :7
-                                    }
-                                ]
-                            }
-                        ]
+                        key: 'platNick',
+                        text: '店铺名称',
+
+                        // template=> string dom
+                        template: `<span style="color: red">跟据相关法规，该单元格被过滤</span>`
                     },{
-                        label : '开关',
-                        prop : 'switch',
-                        type : 'switch',
-                        
+                        key: 'createTime',
+                        text: '创建时间',
                     },{
-                        label : '日期',
-                        prop : 'd',
-                        type :'date-picker',
-                        pickerType : 'datetime',
-                        required :true,
-                        changeCallBack :(val) => {
-                            console.log(val)
+                        key: 'updateTime',
+                        text: '更新时间',
+
+                        // 表头筛选条件, 该值由用户操作后会将选中的值以{key: value}的形式覆盖至query参数内。非必设项
+                        filter: {
+                            // 筛选条件列表, 数组对象。格式: [{value: '1', text: 'HTML/CSS'}],在使用filter时该参数为必设项。
+                            option: [
+                                {value: '1', text: 'HTML/CSS'},
+                                {value: '2', text: 'nodeJS'},
+                                {value: '3', text: 'javaScript'},
+                                {value: '4', text: '前端鸡汤'},
+                                {value: '5', text: 'PM Coffee'},
+                                {value: '6', text: '前端框架'},
+                                {value: '7', text: '前端相关'}
+                            ],
+                            // 筛选选中项，字符串, 默认为''。 非必设项，选中的过滤条件将会覆盖query
+                            selected: '3',
+                            // 否为多选, 布尔值, 默认为false。非必设项
+                            isMultiple: true
+                        },
+                        // template=> function: return string dom
+                        template: updateTime => {
+                            return `<span style="color: blue">${updateTime}</span>`;
                         }
                     },{
-                        label : '时间',
-                        prop : 't',
-                        type : 'time-picker',
-                        isRange :true,
-                        changeCallBack :(val) =>{
-                            console.log(val)
-                        } 
-                    },{
-                        label : '上传',
-                        prop : 'file',
-                        type : 'file-upload',
+                        key: 'action',
+                        text: '操作',
+                        width: '100px',
+                        align: 'center',
+
+                        // template=> function: return vue template
+                        // vue模版中将自动添加row字段，该字段为当前行所使用的数据
+                        // vue模版将不允许再使用template函数中传入的参数
+                        template:() => {
+                            return '<el-button size="mini" type="danger" @click="delRelation(row)">解除绑定</el-button>';
+                        }
                     }
-                ]
+                ],
             }
         },
+        beforeRouteEnter (to, from, next) {
+            next(vm => {
+                console.log(vm)
+                // 通过 `vm` 访问组件实例
+            })
+        },
         created () {
-            
+            console.log(this._uid)
         },
         mounted () {
             
         },
         methods : {
-            test () {
-                console.log(this.form_data)
-                // this.$store.commit('testMut',1)
-            },
-            formSubmit () {
-                console.log(11)
-            },
-            errorHandle (rules) {
-                console.log(rules)
-            }
+            
         }
     }
 </script>

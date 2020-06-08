@@ -1,8 +1,6 @@
 const webpack = require('webpack')
 const path = require('path');
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
-// 定义压缩文件类型
-const productionGzipExtensions = ['js', 'css']
 
 function resolve(dir) {
     return path.join(__dirname, dir)
@@ -71,8 +69,6 @@ module.exports = {
         	.plugin('webpack-bundle-analyzer')
         	.use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin)
         	.end()
-      		
-
 		}
 
     },

@@ -1,11 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 /* 
-	store数据持久化插件,
+	store数据持久化插件,需要时安装
 	文档：https://www.npmjs.com/package/vuex-along
 */
-import createVuexAlong from "vuex-along";
-
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -24,11 +22,6 @@ export default new Vuex.Store({
 		
 	},
 	plugins: [
-		createVuexAlong({
-			name : process.env.VUE_STORE_NAME ? process.env.VUE_STORE_NAME : 'LeemDs',
-			session :{
-				list : ['number']
-			}
-		})
+		
 	]
 })
