@@ -187,14 +187,13 @@
                 }
             },
             clearHandle (val) {
-                if (this.option.clearCallBack) {
-                   
-                    if (this.option.defaultValue) {
-                        this.option.clearCallBack(this.option.defaultValue);
-                        this.$emit('input', this.option.defaultValue)
-                    } else {
-                        this.option.clearCallBack();
-                    }
+                if (this.option.clearCallBack && this.option.defaultValue) {
+                    this.option.clearCallBack(this.option.defaultValue);
+                    this.$emit('input', this.option.defaultValue)
+                } else {
+                    this.result = null;
+                    this.$emit('input', this.result);
+                    this.option.clearCallBack && this.option.clearCallBack();
                 }
             },
             blurHandle (e) {

@@ -9,6 +9,7 @@ import directives from '@u/directives'
 import ElementUi from 'element-ui';
 import moment from 'moment'
 import ldsForm from '@c/global/LdsForm'
+import ldsSearchCard from '@c/global/LdsSearchCard'
 //gird-manager
 import GridManager from 'gridmanager-vue';
 import 'gridmanager-vue/css/gm-vue.css';
@@ -37,5 +38,6 @@ export default {
         //注册全局组件
         Vue.component('lds-form',ldsForm)
         Vue.component('lds-table',ldsTable)
+        Vue.component('lds-search-card',ldsSearchCard)
     }
 }

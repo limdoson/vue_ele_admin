@@ -1,9 +1,9 @@
 import axios from 'axios'
-import {Message} from 'element'
+import {Message} from 'element-ui'
 
 let request = axios.create({
     timeout : 0,
-    baseURL : process.env.VUE_APP_BASE_URL,
+    // baseURL : process.env.VUE_APP_BASE_URL,
     withCredentials : true
 })
 
@@ -24,8 +24,10 @@ request.interceptors.response.use(
     response => {
         //response处理
         //接口状态妈维护在这里完成
-        
-        return response;
+        if (response.data.code == 200) {
+
+        }
+        return response.data.data;
     }, 
     error => {
         //错误处理

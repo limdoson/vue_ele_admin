@@ -76,6 +76,8 @@ export default {
         支持 type = select , date-picker
         */ 
         clearHandle (val) {
+            this.result = null;
+            this.$emit('input', this.result)
             if (this.clearCallBack) {
                 this.clearCallBack(val)
             }

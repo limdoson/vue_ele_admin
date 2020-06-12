@@ -22,9 +22,10 @@
                 <slot :name='item.prop'></slot>
             </template>
         </template>
-        <el-form-item>
+        <el-form-item v-if='showSubmitButton'>
             <el-button type='primary' @click='submit'>提交数据</el-button>
         </el-form-item>
+        <slot name='form-slot'></slot>
     </el-form>
 </template>
 
@@ -85,6 +86,11 @@
             },
             validateErrorHandle : {
                 type :Function
+            },
+            //是否显示提交按钮
+            showSubmitButton : {
+                type :Boolean,
+                default : true
             }
         },
         data() {

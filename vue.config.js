@@ -16,7 +16,7 @@ const cdn = {
         'https://cdn.bootcss.com/vue/2.6.11/vue.min.js',
         'https://cdn.bootcss.com/vue-router/3.1.3/vue-router.min.js',
         'https://cdn.bootcss.com/vuex/3.1.3/vuex.min.js',
-		'https://cdn.bootcss.com/axios/0.19.2/axios.min.js',
+		'https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.min.js',
 		'https://cdn.bootcss.com/element-ui/2.13.0/index.js',
 		'https://cdn.bootcss.com/echarts/4.7.0/echarts.min.js'
     ]
@@ -30,7 +30,7 @@ module.exports = {
         open: true,
 		proxy :  {
 			'/api' : {
-				target : process.env.NODE_ENV == 'development' ?  'http://192.168.1.31:8080' : 'http://119.23.244.55:8080',
+				target : process.env.NODE_ENV == 'development' ?  'http://xta8praj.xiaomy.net' : 'http://119.23.244.55:8080',
 				changeOrigin : true,
 				ws : true,
 				pathRewrite : {

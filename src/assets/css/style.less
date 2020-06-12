@@ -3,7 +3,12 @@
 */
 
 @import './_b.less';
-html,body,#app {
+html,
+body,
+#app, 
+.layout, 
+.layout-container,
+.el-menu {
     height: 100%;
     font-family: 'Microsoft Yahei', '宋体', Arial;
 }
@@ -21,5 +26,19 @@ html,body,#app {
             .mb(30px);
             font-size: 24px;
         }
+    }
+}
+//layout
+.layout {
+    .el-header {
+        background: #545c64;
+        color: #fff;
+        padding: 0 50px;
+        .user-menu {
+            color: #fff;
+        }
+    }
+    .el-main {
+        padding: 10px;
     }
 }
